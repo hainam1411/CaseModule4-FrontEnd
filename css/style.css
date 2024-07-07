@@ -25,6 +25,25 @@ body {
 .head-section {
   background-image: linear-gradient(180deg, #c4b6fd, #93acfc);
 }
+.card{
+  width: 300px;
+  border: none;
+}
+
+.card-body, .d-flex {
+  padding: 1rem; /* Điều chỉnh khoảng cách bên trong thẻ card */
+}
+
+.card img {
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  width: 100%;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: 300px;
+}
 
 .navbar-brand,
 .text-primary {
