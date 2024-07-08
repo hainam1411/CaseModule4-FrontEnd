@@ -22,7 +22,7 @@ function getAllOrderList(page = 0, size = 5) {
                             <td>${orderItem.total}</td>
                             <td>${orderItem.orderDate}</td>
                             <td>${orderItem.username}</td>
-                            <td><button onclick="remove(${orderItem.id})">Delete</button></td>
+                            <td><button onclick="removeOrder(${orderItem.id})">Delete</button></td>
                          </tr>`;
             });
             html += `</table>`;
