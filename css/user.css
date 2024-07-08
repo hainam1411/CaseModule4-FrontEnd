@@ -10,3 +10,6 @@
 ul li a:hover{
     color: #0a58ca;
 }
+.nav-link {
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; /* Thêm transition */
+}

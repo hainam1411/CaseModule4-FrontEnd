@@ -49,7 +49,13 @@
         <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary" style="width: 280px;">
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
-                    <a href="#" class="nav-link active" aria-current="page">
+                    <div class ="user-time">
+                        <div class="row"><strong>Xin chào</strong>User1</div>
+                        <div class="row"><strong>Thời gian chơi:</strong> </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a id="games" href="#games" class="nav-link" aria-current="page" onclick="getAll(this, 'games')">
                         <svg class="bi pe-none me-2" width="16" height="16">
                             <use xlink:href="#home"></use>
                         </svg>
@@ -57,11 +63,10 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link" aria-current="page" onclick="getAll()">
+                    <a id="foods" href="#foods" class="nav-link" aria-current="page" onclick="getAll(this, 'foods')">
                         <svg class="bi pe-none me-2" width="16" height="16">
-                            <use xlink:href="#home"></use>
                         </svg>
-                        Đồ Ăn
+                        Tất cả
                     </a>
                 </li>
                 <li>
@@ -69,23 +74,16 @@
                         <svg class="bi pe-none me-2" width="16" height="16">
                             <use xlink:href="#speedometer2"></use>
                         </svg>
-                        Đồ Uống
+                        Đồ Ăn
                     </a>
                 </li>
-<!--                <li>-->
-<!--                    <a href="#" class="nav-link link-body-emphasis">-->
-<!--                        <svg class="bi pe-none me-2" width="16" height="16">-->
-<!--                            <use xlink:href="#grid"></use>-->
-<!--                        </svg>-->
-<!--                        Máy Tính-->
-<!--                    </a>-->
                 </li>
                 <li>
                     <a href="#" class="nav-link link-body-emphasis">
                         <svg class="bi pe-none me-2" width="16" height="16">
                             <use xlink:href="#grid"></use>
                         </svg>
-                        Order
+                        Đồ uống
                     </a>
                 </li>
             </ul>

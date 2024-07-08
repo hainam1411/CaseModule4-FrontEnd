@@ -1,4 +1,9 @@
-function getAll() {
+function getAll(t, elm) {
+    const element = document.querySelector('.nav-link.active');
+    if (element) {
+        element.classList.remove('active');
+    }
+    document.getElementById(elm).classList.add("active");
     axios.get('http://localhost:8080/products')
         .then(function (response) {
             let products = response.data;
@@ -21,5 +26,7 @@ function getAll() {
         })
 }
 
-getAll();
+getAll(null, 'games');
+
+
 
