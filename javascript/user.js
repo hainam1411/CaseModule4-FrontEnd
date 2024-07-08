@@ -6,7 +6,7 @@ function getAll() {
             let html = ``;
             for (let i = 0; i < products.length; i++) {
 
-                let product = `<div class="card h-100 col-12 col-md-2">
+                let product = `<div class="card col-12 col-md-1">
                   <img src="./assets/food.png" alt="" class="img-fluid  d-block mx-auto"/>
                   <div class="card-body">
                     <h5 class="card-title">${products[i].name}</h5>
