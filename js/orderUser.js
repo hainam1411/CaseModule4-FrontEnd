@@ -1,44 +1,45 @@
-function showFromCreate() {
-    axios.get('http://localhost:8080/order_user').then(res =>{
+function showFromCreate(productId) {
+    axios.get('http://localhost:8080/order_user').then(res => {
         let html = `
-    <div>
-        <input type="text" value="">
-    </div>
-    <div>
-        <input type="text" id="quantity" placeholder="quantity" >
-        <span id="errorquantity"></span>
-        <button onclick="addOrder()">Add</button>
-    </div>`
+            <div>
+                <input type="text" value="">
+            </div>
+            <div>
+                <input type="text" id="quantity" placeholder="quantity">
+                <span id="errorquantity"></span>
+                <button onclick="addOrder(${productId})">Add</button>
+            </div>`;
         document.getElementById("main").innerHTML = html;
-    })
+    });
 }
 
-
-function addOrder() {
-    let user_id = JSON.parse(localStorage.getItem('token')).userId;
-    let product_id = this.getAttribute("product");
+function addOrder(productId) {
+    let token = JSON.parse(localStorage.getItem('currentuser'));
+    if (!token || !token.userId) {
+        alert("User information not found. Please log in again.");
+        return;
+    }
+    let user_id = token.userId;
     let quantity = document.getElementById("quantity").value;
 
     let orderData = {
         userId: user_id,
-        productId: product_id,
-        quantity: quantity
+        productId: productId,
+        quantity: parseInt(quantity)
     };
 
-    axios.post('http://localhost:8080/order_user/add', null, {
-        params: orderData
-    }).then(res => {
-        alert("Order added successfully");
-        //////////////////////////////////
-    }).catch(error => {
-        checkInput(error.response.data);
-    });
+    axios.post('http://localhost:8080/order_user/add', orderData)
+        .then(res => {
+            alert("Order added successfully");
+        })
+        .catch(error => {
+            checkInput(error.response.data);
+        });
 }
 
-
 function checkInput(errors) {
-    errors.map(item => {
-        let err = item.split(':')
-        document.getElementById('error'+err[0]).innerHTML = err[1]
-    })
+    errors.forEach(item => {
+        let err = item.split(':');
+        document.getElementById('error' + err[0]).innerHTML = err[1];
+    });
 }
