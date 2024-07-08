@@ -1,4 +1,4 @@
-function getAll(page = 0, size = 5) {
+function getAllOrderList(page = 0, size = 5) {
     axios.get(`http://localhost:8080/order_admin/list?page=${page}&size=${size}`)
         .then(res => {
             let order = res.data.content; // Lấy danh sách đơn hàng từ response.data.content
