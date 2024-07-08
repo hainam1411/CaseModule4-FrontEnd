@@ -15,7 +15,7 @@ function showFromCreate() {
 
 
 function addOrder() {
-    let user_id = localStorage.getItem('user_id');
+    let user_id = JSON.parse(localStorage.getItem('token')).userId;
     let product_id = this.getAttribute("product");
     let quantity = document.getElementById("quantity").value;
 
