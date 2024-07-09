@@ -30,16 +30,15 @@
             </h2>
         </div>
         <div class="d-flex flex-row mb-3">
-            <div class="p-2">
+            <div class="col p-2">
                 <form action="#" class="d-flex" role="search" method="post">
                     <input class="form-control me-2 w-100" type="search" placeholder="Tìm Kiếm" aria-label="Search">
                     <button class="btn btn-outline-primary mx-2 " type="submit"><i class="fas fa-search"></i></button>
                 </form>
             </div>
             <div class="p-2">
-                <!--them moi-->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                        >
+                <!--Thêm mới đồ ăn-->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <i class="fas fa-user-plus">Thêm mới</i>
                 </button>
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -47,29 +46,26 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Tạo tài khoản mới</h1>
+                                <h1 class="modal-title fs-5" id="modal-food">Thêm mới đồ ăn </h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                             </div>
-                            <div id="modal-body" class="modal-body">
+                            <div class="modal-body">
                                 <div class="mb-3">
-                                    <label for="username" class="form-label">Tài khoản</label>
-                                    <input class="form-control" id="username" placeholder="">
-                                    <span id="errorusername"></span>
+                                    <label for="foodName" class="form-label">Tên Đồ Ăn</label>
+                                    <input class="form-control" id="foodName" placeholder="">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="password" class="form-label">Mật Khẩu</label>
-                                    <input class="form-control" id="password" placeholder="">
-                                    <span id="errorpassword"></span>
+                                    <label for="foodCost" class="form-label">Đơn Giá</label>
+                                    <input class="form-control" id="foodCost" placeholder="">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="identityCode" class="form-label">Số Căn Cước Công Dân</label>
-                                    <input class="form-control" id="identityCode" placeholder="">
-                                    <span id="erroridentityCode"></span>
+                                    <label for="formFile" class="form-label">Ảnh</label>
+                                    <input class="form-control" type="file" id="formFile">
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
-                                    <button type="button" class="btn btn-primary" onclick="create()">Lưu</button>
+                                    <button type="button" class="btn btn-primary">Lưu</button>
                                 </div>
                             </div>
                         </div>
@@ -133,7 +129,7 @@
     </div>
     <!--table-->
     <div class="col-md-8">
-        <table class="table table-light table-hover ">
+        <table class="table table-light table-hover table-bordered">
             <thead>
             <tr class="table-danger">
                 <th scope="col">STT</th>
@@ -143,76 +139,72 @@
                 <th scope="col">Thao Tác</th>
             </tr>
             </thead>
-                <tbody>
-                <tr class="table-success">
-                    <td>1</td>
-                    <td>Mì tôm</td>
-                    <td>20.000VND</td>
-                    <td><img src="assets/food.png" height="100" width="auto"/></td>
-                    <td>
-                        <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
-                        <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Bánh Mì</td>
-                    <td>20.000VND</td>
-                    <td>Null</td>
-                    <td>
-                        <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
-                        <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                    </td>
-                </tr>
-                <tr class="table-success">
-                    <td>3</td>
-                    <td>Cơm Rang</td>
-                    <td>20.000VND</td>
-                    <td>Null</td>
-                    <td>
-                        <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
-                        <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                    </td>
-                </tr>
-                <tr class="table-light">
-                    <td>4</td>
-                    <td>Phở</td>
-                    <td>20.000VND</td>
-                    <td>Null</td>
-                    <td>Sửa Xoá</td>
-                </tr>
-                <tr class="table-success">
-                    <td>5</td>
-                    <td>Bún</td>
-                    <td>20.000VND</td>
-                    <td>Null</td>
-                    <td>Sửa Xoá</td>
-                </tr>
-                <tr class="table-light">
-                    <td>6</td>
-                    <td>Mì tôm</td>
-                    <td>20.000VND</td>
-                    <td><img src="assets/food.png" height="100" width="auto"/></td>
-                    <td>Sửa Xoá</td>
-                </tr>
-                <tr class="table-success">
-                    <td>7</td>
-                    <td>Mì tôm</td>
-                    <td>20.000VND</td>
-                    <td>Null</td>
-                    <td>Sửa Xoá</td>
-                </tr>
-                </tbody>
+            <tbody>
+            <tr class="table-success">
+                <td>1</td>
+                <td>Mì tôm</td>
+                <td>20.000VND</td>
+                <td><img src="assets/food.png" height="100" width="auto"/></td>
+                <td>
+                    <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
+                    <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Bánh Mì</td>
+                <td>20.000VND</td>
+                <td>Null</td>
+                <td>
+                    <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
+                    <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                </td>
+            </tr>
+            <tr class="table-success">
+                <td>3</td>
+                <td>Cơm Rang</td>
+                <td>20.000VND</td>
+                <td>Null</td>
+                <td>
+                    <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
+                    <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                </td>
+            </tr>
+            <tr class="table-light">
+                <td>4</td>
+                <td>Phở</td>
+                <td>20.000VND</td>
+                <td>Null</td>
+                <td>Sửa Xoá</td>
+            </tr>
+            <tr class="table-success">
+                <td>5</td>
+                <td>Bún</td>
+                <td>20.000VND</td>
+                <td>Null</td>
+                <td>Sửa Xoá</td>
+            </tr>
+            <tr class="table-light">
+                <td>6</td>
+                <td>Mì tôm</td>
+                <td>20.000VND</td>
+                <td><img src="assets/food.png" height="100" width="auto"/></td>
+                <td>Sửa Xoá</td>
+            </tr>
+            <tr class="table-success">
+                <td>7</td>
+                <td>Mì tôm</td>
+                <td>20.000VND</td>
+                <td>Null</td>
+                <td>Sửa Xoá</td>
+            </tr>
+            </tbody>
         </table>
     </div>
     <!--/table-->
 </div>
 <hr>
-<script src="javascript/admin.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js"
-        integrity="sha512-JSCFHhKDilTRRXe9ak/FJ28dcpOJxzQaCd3Xg8MyF6XFjODhy/YMCM8HW0TFDckNHWUewW+kfvhin43hKtJxAw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+Footer
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
