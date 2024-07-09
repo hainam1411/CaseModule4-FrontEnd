@@ -3,14 +3,18 @@ function showFromCreate() {
         axios.get('http://localhost:8080/categories').then(response => {
             let html = `
     <div>
-        <input type="text" id="name" placeholder="Name">
+       <label for="name" class="form-label">Tên Sản Phẩm</label>
+        <input class="form-control" type="text" id="name" placeholder="Name">
         <span id="errorname"></span>
-        <input type="text" id="price" placeholder="price">
+        <label for="price" class="form-label">Giá</label>
+        <input class="form-control" type="text" id="price" placeholder="price">
         <span id="errorprice"></span>
-        <input type="file" id="fileButton" onchange="uploadImage(event)">
-        <input type="hidden" id="image" value="">
+        <label for="fileButton" class="form-label">Ảnh</label>
+        <input class="form-control" type="file" id="fileButton" onchange="uploadImage(event)">
+        <input class="form-control" type="hidden" id="image" value="">
         <div id="imgDiv"></div>
-        <select id="category">
+        <label for="category" class="form-label">Danh Mục</label>
+        <select class="form-select form-select-sm" aria-label="Small select example"  id="category">
             <option value="">---Lựa chọn---</option>`
             let category = response.data;
             category.map(item => {
@@ -18,7 +22,10 @@ function showFromCreate() {
             })
             html += `</select>
                 <span id="errorcategory"></span>
-                <button onclick="createCategory()">Add</button>
+                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="getAllProduct()">
+                        Huỷ
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="createCategory()">Lưu</button>
     </div>`
             document.getElementById("main").innerHTML = html;
         })
