@@ -40,7 +40,7 @@ function createCategory() {
     }
     axios.post('http://localhost:8080/products', product).then(res => {
         alert("Thêm thành công");
-        getAll();
+        getAllProduct();
     }).catch(error => {
         checkInput(error.response.data)
     })

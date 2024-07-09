@@ -21,14 +21,14 @@ function getAll(t, elm) {
                     <h3 class="text-danger">${products[i].price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}</h3>
                   </div>
                   <div class="col-lg-3 col-md-2  justify-content-around mx-auto">
-                  <button type="submit" class="btn btn-danger" id="addCard" ><i class="fa-solid fa-cart-shopping"></i></button>
+                  <button type="submit" class="btn btn-danger" id="addCard" onclick="showFromOrder()" ><i class="fas fa-shopping-cart"></i></button>
                     </div>
                   </div>
                   </div> 
                 </div>`;
                 html += product;
             }
-            document.getElementById('product').innerHTML = html;
+            document.getElementById('main').innerHTML = html;
         })
 }
 
@@ -36,14 +36,34 @@ getAll(null, elm);
 
 function showFromOrder(productId) {
     let html = `
-          <div>
-              <input type="text" value="">
-          </div>
-          <div>
-              <input type="text" id="quantity" placeholder="quantity">
-              <span id="errorquantity"></span>
-              <button onclick="addOrder(${productId})">Add</button>
-          </div>`;
+                                      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                 aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="modal-food">Thêm Tài Khoản </h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="mb-3">
+                                                <label for="foodName" class="form-label">Tên Tài Khoản</label>
+                                                <input class="form-control" id="foodName" placeholder="">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="foodCost" class="form-label">Số CCCD</label>
+                                                <input class="form-control" id="foodCost" placeholder="">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                    Huỷ
+                                                </button>
+                                                <button type="button" class="btn btn-primary">Lưu</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`;
     document.getElementById("main").innerHTML = html;
 }
 
