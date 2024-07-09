@@ -21,7 +21,7 @@ function getAll(t, elm) {
                     <h3 class="text-danger">${products[i].price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}</h3>
                   </div>
                   <div class="col-lg-3 col-md-2  justify-content-around mx-auto">
-                  <button type="submit" class="btn btn-danger" id="addCard" onclick="showFromCreate()"><i class="fa-solid fa-cart-shopping"></i></button>
+                  <button type="submit" class="btn btn-danger" id="addCard" onclick="showFromOrder()"><i class="fa-solid fa-cart-shopping"></i></button>
                     </div>
                   </div>
                   </div> 
@@ -33,19 +33,17 @@ function getAll(t, elm) {
 }
 
 getAll(null, elm);
-function showFromCreate(productId) {
-    axios.get('http://localhost:8080/order_user').then(res => {
-        let html = `
-            <div>
-                <input type="text" value="">
-            </div>
-            <div>
-                <input type="text" id="quantity" placeholder="quantity">
-                <span id="errorquantity"></span>
-                <button onclick="addOrder(${productId})">Add</button>
-            </div>`;
-        document.getElementById("addCart").innerHTML = html;
-    });
+function showFromOrder(productId) {
+    let html = `
+          <div>
+              <input type="text" value="">
+          </div>
+          <div>
+              <input type="text" id="quantity" placeholder="quantity">
+              <span id="errorquantity"></span>
+              <button onclick="addOrder(${productId})">Add</button>
+          </div>`;
+    document.getElementById("main").innerHTML = html;
 }
 
 function addOrder(productId) {
@@ -72,11 +70,64 @@ function addOrder(productId) {
         });
 }
 
-function checkInput(errors)  {
+function checkInput(errors) {
     errors.forEach(item => {
         let err = item.split(':');
         document.getElementById('error' + err[0]).innerHTML = err[1];
     });
+}
+
+
+function search() {
+    let name = document.getElementById("search").value;
+    axios.get('http://localhost:8080/cars/search?name='+name).then(res => {
+        let cars = res.data;
+        let html = `<table border="1">
+                             <tr>
+                                 <td>Id</td>
+                                 <td>Name</td>
+                                 <td>Frame Code</td>
+                                 <td>Machine Code</td>
+                                 <td>Production Date</td>
+                                 <td>Price</td>
+                                 <td>Quantity</td>
+                                 <td>Image</td>
+                                 <td>Producer</td>
+                                 <td>Type</td>
+                                 <td colspan="2">Action</td>
+                             </tr>`;
+        for (let i = 0; i < cars.length; i++) {
+            let dateArr = cars[i].productionDate;
+            let dateObject = new Date(dateArr[0],dateArr[1]-1,dateArr[2]);
+            let dateString = dateObject.getFullYear() + '-' + ('0' + (dateObject.getMonth() + 1)).slice(-2) + '-' + ('0' + dateObject.getDate()).slice(-2);
+            let type_name = (cars[i].type != null) ? cars[i].type.name : null;
+            let producer_name = (cars[i].producer != null) ? cars[i].producer.name : null;
+            html += `<tr>
+                                <td>${cars[i].id}</td>
+                                <td>${cars[i].name}</td>
+                                <td>${cars[i].frameCode}</td>
+                                <td>${cars[i].machineCode}</td>
+                                <td>${dateString}</td>
+                                <td>${cars[i].price}</td>
+                                <td>${cars[i].quantity}</td>
+                                <td><img src="${cars[i].image}" alt=""></td>
+                                <td>${producer_name}</td>
+                                <td>${type_name}</td>
+                                <td><button onclick="showFromUpdate(${cars[i].id})">Edit</button></td>
+                                <td><button onclick="remove(${cars[i].id})">Delete</button></td>
+                             </tr>`
+        }
+        html += `</table>`;
+        document.getElementById("main").innerHTML = html;
+    })
+}
+
+function goToProducer() {
+    window.location.href = "producer.html"
+}
+
+function goToType() {
+    window.location.href = "type.html"
 }
 
 // function getgames() {

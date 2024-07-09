@@ -1,16 +1,15 @@
-function showFromCreate(productId) {
-    axios.get('http://localhost:8080/order_user').then(res => {
-        let html = `
-            <div>
-                <input type="text" value="">
-            </div>
-            <div>
-                <input type="text" id="quantity" placeholder="quantity">
-                <span id="errorquantity"></span>
-                <button onclick="addOrder(${productId})">Add</button>
-            </div>`;
-        document.getElementById("addCart").innerHTML = html;
-    });
+
+function showFromOrder(productId) {
+    let html = `
+          <div>
+              <input type="text" value="">
+          </div>
+          <div>
+              <input type="text" id="quantity" placeholder="quantity">
+              <span id="errorquantity"></span>
+              <button onclick="addOrder(${productId})">Add</button>
+          </div>`;
+    document.getElementById("main").innerHTML = html;
 }
 
 function addOrder(productId) {
