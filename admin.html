@@ -38,7 +38,8 @@
             </div>
             <div class="p-2">
                 <!--them moi-->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                        >
                     <i class="fas fa-user-plus">Thêm mới</i>
                 </button>
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -50,22 +51,25 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
+                            <div id="modal-body" class="modal-body">
                                 <div class="mb-3">
-                                    <label for="fullName" class="form-label">Họ Và Tên</label>
-                                    <input class="form-control" id="fullName" placeholder="">
+                                    <label for="username" class="form-label">Tài khoản</label>
+                                    <input class="form-control" id="username" placeholder="">
+                                    <span id="errorusername"></span>
                                 </div>
                                 <div class="mb-3">
                                     <label for="password" class="form-label">Mật Khẩu</label>
                                     <input class="form-control" id="password" placeholder="">
+                                    <span id="errorpassword"></span>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="cccd" class="form-label">Số Căn Cước Công Dân</label>
-                                    <input class="form-control" id="cccd" placeholder="">
+                                    <label for="identityCode" class="form-label">Số Căn Cước Công Dân</label>
+                                    <input class="form-control" id="identityCode" placeholder="">
+                                    <span id="erroridentityCode"></span>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
-                                    <button type="button" class="btn btn-primary">Lưu</button>
+                                    <button type="button" class="btn btn-primary" onclick="create()">Lưu</button>
                                 </div>
                             </div>
                         </div>
@@ -204,6 +208,11 @@
     <!--/table-->
 </div>
 <hr>
+<script src="javascript/admin.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js"
+        integrity="sha512-JSCFHhKDilTRRXe9ak/FJ28dcpOJxzQaCd3Xg8MyF6XFjODhy/YMCM8HW0TFDckNHWUewW+kfvhin43hKtJxAw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
