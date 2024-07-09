@@ -1,14 +1,14 @@
-function userShowFood(t,elm) {
+function userShowFood() {
     const element = document.querySelector('.nav-link.active');
     if (element) {
         element.classList.remove('active');
     }
-    axios.get('http://localhost:8080/products/foods')
+    axios.get('http://localhost:8080/products/food')
         .then(function (response) {
-            let product = response.data;
+            let products = response.data;
             let html = ``;
-            for (let i = 0; i < product.length; i++) {
-                let food = `<div class=" col-12 col-md-2">
+            for (let i = 0; i < products.length; i++) {
+                let food = `<div class=" col-12 col-md-3">
                       <div class="card border-0"> 
                   <img src="./assets/food.png" alt="" class="img-fluid card-img-top"/>
                   <div class="card-body">
@@ -24,10 +24,11 @@ function userShowFood(t,elm) {
                     </div>
                   </div>
                   </div> 
-                </div>`
+                </div>`;
+                html += food;
             }
-            html += food;
+
             document.getElementById("main").innerHTML = html;
         })
 }
-userShowFood(null,elm);
+userShowFood();

@@ -3,13 +3,13 @@ function userShowDrink(t, elm) {
     if (element) {
         element.classList.remove('active');
     }
-    axios.get('http://localhost:8080/products/drinks')
+    axios.get('http://localhost:8080/products/drink')
         .then(function (response) {
             console.log(response.data)
-            let product = response.data;
+            let products = response.data;
             let html = ``;
-            for (let i = 0; i < product.length; i++) {
-                let drink= `<div class=" col-12 col-md-2">
+            for (let i = 0; i < products.length; i++) {
+                let drink= `<div class=" col-12 col-md-3">
                       <div class="card border-0"> 
                   <img src="./assets/food.png" alt="" class="img-fluid card-img-top"/>
                   <div class="card-body">
@@ -24,9 +24,10 @@ function userShowDrink(t, elm) {
                     </div>
                   </div>
                   </div> 
-                </div>`
+                </div>`;
+                html += drink;
             }
-            html += drink;
+
             document.getElementById("main").innerHTML = html;
         })
 }
