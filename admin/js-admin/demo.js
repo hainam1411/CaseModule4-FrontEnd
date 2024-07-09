@@ -529,12 +529,12 @@
   //   }
   // })
 
-  // $navbar_variants_colors.find('option.' + active_navbar_color).prop('selected', true)
-  // $navbar_variants_colors.removeClass().addClass('custom-select mb-3 text-light border-0 ').addClass(active_navbar_color)
-  //
-  // $navbar_variants.append($navbar_variants_colors)
-  //
-  // $container.append($navbar_variants)
+  $navbar_variants_colors.find('option.' + active_navbar_color).prop('selected', true)
+  $navbar_variants_colors.removeClass().addClass('custom-select mb-3 text-light border-0 ').addClass(active_navbar_color)
+
+  $navbar_variants.append($navbar_variants_colors)
+
+  $container.append($navbar_variants)
 
   // Sidebar Colors
 
