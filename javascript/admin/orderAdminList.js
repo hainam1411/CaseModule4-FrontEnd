@@ -3,6 +3,17 @@ function getAllOrderList(page = 0, size = 5) {
         .then(res => {
             let order = res.data.content; // Lấy danh sách đơn hàng từ response.data.content
             let html = `
+                <div class="form-inline col-md-6">
+                        <div class="input-group" data-widget="sidebar-search">
+                            <input class="form-control form-control-sidebar" type="search" placeholder="Search"
+                                   aria-label="Search" id="search">
+                            <div class="input-group-append">
+                                <button class="btn btn-sidebar" onclick="getOrderDetailsByUserName()">
+                                    <i class="fas fa-search fa-fw"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
