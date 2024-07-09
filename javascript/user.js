@@ -10,7 +10,7 @@ function getAll(t, elm) {
             console.log(products);
             let html = ``;
             for (let i = 0; i < products.length; i++) {
-                let product = `<div class=" col-12 col-md-3">
+                let product = `<div class=" col-12 col-md-2">
                       <div class="card border-0"> 
                   <img src="./assets/food.png" alt="" class="img-fluid card-img-top"/>
                   <div class="card-body">
@@ -21,14 +21,14 @@ function getAll(t, elm) {
                     <h3 class="text-danger">${products[i].price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}</h3>
                   </div>
                   <div class="col-lg-3 col-md-2  justify-content-around mx-auto">
-                  <button type="submit" class="btn btn-danger" id="addCard" ><i class="fa-solid fa-cart-shopping"></i></button>
+                  <button type="submit" class="btn btn-danger" id="addCard" onclick="showFromOrder()" ><i class="fa-solid fa-cart-shopping"></i></button>
                     </div>
                   </div>
                   </div> 
                 </div>`;
                 html += product;
             }
-            document.getElementById('product').innerHTML = html;
+            document.getElementById('main').innerHTML = html;
         })
 }
 
