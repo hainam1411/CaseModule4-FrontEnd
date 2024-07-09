@@ -3,7 +3,7 @@ function remove(id) {
     if (choice){
         axios.delete('http://localhost:8080/products/'+id).then(res => {
             alert("Xóa thành công");
-            getAll();
+            getAllProduct();
         })
     }else {
         alert("Mày đùa tao à");
