@@ -13,7 +13,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet"/>
-
 </head>
 <body>
 <marquee behavior="" direction="">
@@ -51,22 +50,25 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
+                            <div id="modal-body" class="modal-body">
                                 <div class="mb-3">
-                                    <label for="fullName" class="form-label">Họ Và Tên</label>
-                                    <input class="form-control" id="fullName" placeholder="">
+                                    <label for="username" class="form-label">Tài khoản</label>
+                                    <input class="form-control" id="username" placeholder="">
+                                    <span id="errorusername"></span>
                                 </div>
                                 <div class="mb-3">
                                     <label for="password" class="form-label">Mật Khẩu</label>
                                     <input class="form-control" id="password" placeholder="">
+                                    <span id="errorpassword"></span>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="cccd" class="form-label">Số Căn Cước Công Dân</label>
-                                    <input class="form-control" id="cccd" placeholder="">
+                                    <label for="identityCode" class="form-label">Số Căn Cước Công Dân</label>
+                                    <input class="form-control" id="identityCode" placeholder="">
+                                    <span id="erroridentityCode"></span>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
-                                    <button type="button" class="btn btn-primary">Lưu</button>
+                                    <button type="button" class="btn btn-primary" onclick="create()">Lưu</button>
                                 </div>
                             </div>
                         </div>
@@ -140,71 +142,76 @@
                 <th scope="col">Thao Tác</th>
             </tr>
             </thead>
-                <tbody>
-                <tr class="table-success">
-                    <td>1</td>
-                    <td>Mì tôm</td>
-                    <td>20.000VND</td>
-                    <td><img src="assets/food.png" height="100" width="auto"/></td>
-                    <td>
-                        <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
-                        <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Bánh Mì</td>
-                    <td>20.000VND</td>
-                    <td>Null</td>
-                    <td>
-                        <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
-                        <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                    </td>
-                </tr>
-                <tr class="table-success">
-                    <td>3</td>
-                    <td>Cơm Rang</td>
-                    <td>20.000VND</td>
-                    <td>Null</td>
-                    <td>
-                        <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
-                        <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                    </td>
-                </tr>
-                <tr class="table-light">
-                    <td>4</td>
-                    <td>Phở</td>
-                    <td>20.000VND</td>
-                    <td>Null</td>
-                    <td>Sửa Xoá</td>
-                </tr>
-                <tr class="table-success">
-                    <td>5</td>
-                    <td>Bún</td>
-                    <td>20.000VND</td>
-                    <td>Null</td>
-                    <td>Sửa Xoá</td>
-                </tr>
-                <tr class="table-light">
-                    <td>6</td>
-                    <td>Mì tôm</td>
-                    <td>20.000VND</td>
-                    <td><img src="assets/food.png" height="100" width="auto"/></td>
-                    <td>Sửa Xoá</td>
-                </tr>
-                <tr class="table-success">
-                    <td>7</td>
-                    <td>Mì tôm</td>
-                    <td>20.000VND</td>
-                    <td>Null</td>
-                    <td>Sửa Xoá</td>
-                </tr>
-                </tbody>
+            <tbody>
+            <tr class="table-success">
+                <td>1</td>
+                <td>Mì tôm</td>
+                <td>20.000VND</td>
+                <td>Null</td>
+                <td>
+                    <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
+                    <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Bánh Mì</td>
+                <td>20.000VND</td>
+                <td>Null</td>
+                <td>
+                    <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
+                    <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                </td>
+            </tr>
+            <tr class="table-success">
+                <td>3</td>
+                <td>Cơm Rang</td>
+                <td>20.000VND</td>
+                <td>Null</td>
+                <td>
+                    <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
+                    <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                </td>
+            </tr>
+            <tr class="table-light">
+                <td>4</td>
+                <td>Phở</td>
+                <td>20.000VND</td>
+                <td>Null</td>
+                <td>Sửa Xoá</td>
+            </tr>
+            <tr class="table-success">
+                <td>5</td>
+                <td>Bún</td>
+                <td>20.000VND</td>
+                <td>Null</td>
+                <td>Sửa Xoá</td>
+            </tr>
+            <tr class="table-light">
+                <td>6</td>
+                <td>Mì tôm</td>
+                <td>20.000VND</td>
+                <td>Null</td>
+                <td>Sửa Xoá</td>
+            </tr>
+            <tr class="table-success">
+                <td>7</td>
+                <td>Mì tôm</td>
+                <td>20.000VND</td>
+                <td>Null</td>
+                <td>Sửa Xoá</td>
+            </tr>
+            </tbody>
         </table>
     </div>
     <!--/table-->
 </div>
 <hr>
+<script src="javascript/admin.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js"
+        integrity="sha512-JSCFHhKDilTRRXe9ak/FJ28dcpOJxzQaCd3Xg8MyF6XFjODhy/YMCM8HW0TFDckNHWUewW+kfvhin43hKtJxAw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
 Footer
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
