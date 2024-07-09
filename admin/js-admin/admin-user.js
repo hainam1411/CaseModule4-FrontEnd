@@ -120,25 +120,25 @@ function checkInput(errors) {
     })
 }
 
-// Đặt thời gian kết thúc đếm ngược (ví dụ: 5 phút từ bây giờ)
-let countdownDate = new Date().getTime() + 5 * 6000 * 1000;
-localStorage.setItem('countdownTimes', JSON.stringify(countdownDate));
-// Cập nhật đếm ngược mỗi giây
-const countdownInterval = setInterval(() => {
-    const now = new Date().getTime();
-    const distance = countdownDate - now;
-
-    // Tính toán thời gian cho phút và giây
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    // Hiển thị kết quả trong phần tử có id="countdown"
-    document.getElementById("countdown").innerHTML = minutes + "m " + seconds + "s ";
-
-    // Nếu thời gian đếm ngược kết thúc, hiển thị nội dung kết thúc
-    if (distance < 0) {
-        clearInterval(countdownInterval);
-        document.getElementById("countdown").innerHTML = "EXPIRED";
-    }
-    localStorage.setItem('countdownTimes', JSON.stringify(countdownTimes));
-}, 1000);
+// // Đặt thời gian kết thúc đếm ngược (ví dụ: 5 phút từ bây giờ)
+// let countdownDate = new Date().getTime() + 5 * 6000 * 1000;
+// localStorage.setItem('countdownTimes', JSON.stringify(countdownDate));
+// // Cập nhật đếm ngược mỗi giây
+// const countdownInterval = setInterval(() => {
+//     const now = new Date().getTime();
+//     const distance = countdownDate - now;
+//
+//     // Tính toán thời gian cho phút và giây
+//     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+//     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+//
+//     // Hiển thị kết quả trong phần tử có id="countdown"
+//     document.getElementById("countdown").innerHTML = minutes + "m " + seconds + "s ";
+//
+//     // Nếu thời gian đếm ngược kết thúc, hiển thị nội dung kết thúc
+//     if (distance < 0) {
+//         clearInterval(countdownInterval);
+//         document.getElementById("countdown").innerHTML = "EXPIRED";
+//     }
+//     localStorage.setItem('countdownTimes', JSON.stringify(countdownTimes));
+// }, 1000);
