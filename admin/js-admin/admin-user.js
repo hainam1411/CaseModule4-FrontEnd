@@ -159,3 +159,49 @@ function checkInput(errors) {
 //         localStorage.removeItem('countdownDate');
 //     }
 // }, 1000);
+
+function showHistory() {
+    axios.get('http://localhost:8080/history').then(res => {
+        let history = res.data;
+        let html = `<table class="table table-striped table-valign-middle table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Tên Tài Khoản </th>
+                                        <th>Số Tiền</th>
+                                        <th>Thời Gian</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>`
+        for (let i = 0; i < history.length; i++) {
+            let time = formatDate(history[i].dateTime)
+            html += `<tr>
+                                        <td>${i + 1}</td>
+                                        <td>${history[i].user.username}</td>
+                                        <td>${history[i].price}</td>
+                                        <td>${time}</td>
+                                    </tr>`
+        }
+        html += `   </tbody>
+                         </table>`
+
+        document.getElementById("main").innerHTML = html;
+    })
+}
+function formatDate(dateString) {
+    // Chuyển chuỗi thành đối tượng Date
+    const date = new Date(dateString);
+
+    // Tạo các thành phần ngày, giờ, phút, giây
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Tháng bắt đầu từ 0
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+
+    // Tạo chuỗi định dạng mong muốn
+    const formattedDate = `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
+
+    return formattedDate;
+}
