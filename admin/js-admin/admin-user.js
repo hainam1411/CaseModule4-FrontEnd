@@ -15,11 +15,12 @@ function showListUser() {
                                     <tbody>`
         for (let i = 0; i < users.length; i++) {
                 let status = (users[i].enabled) ? "Hoạt động" : "Nghỉ";
+                let time = Math.round(users[i].time/60);
             html += `<tr>
                                         <td>${i + 1}</td>
                                         <td>${users[i].username}</td>
                                         <td>${users[i].identityCode}</td>
-                                        <td><div class="countdown" id="countdown"></div></td>
+                                        <td>${time}</td>
                                         <td>${status}</td>
                                         <td>
                                             <button data-id="${users[i].username}" type="button" class="btn btn-success" data-bs-toggle="modal"
@@ -28,10 +29,7 @@ function showListUser() {
                                        </div>    
                                             <button data-id="${users[i].username}" type="button" class="btn btn-warning" data-bs-toggle="modal" 
                                             data-bs-target="#naptien" ><i class="fas fa-dollar-sign"></i>
-                                            </button>
-<!--                                            <div class="modal fade" id="updateMoney" tabindex="-1" aria-labelledby="exampleModalLabel"-->
-<!--                                 aria-hidden="true">-->
-                                
+                                            </button>                                
                             </div>
                                         </td>
                                     </tr>`
@@ -41,6 +39,7 @@ function showListUser() {
         document.getElementById("main").innerHTML = html;
     })
 }
+showListUser()
 const modalMoney = document.getElementById('naptien')
 if (modalMoney) {
     modalMoney.addEventListener('show.bs.modal', event => {
@@ -83,13 +82,23 @@ function updateMoney() {
     let username = document.getElementById("txtUpdateUser").value;
     let money = document.getElementById("txtUpdateMoney").value;
     let time = (money/10000)*60*60;
-    console.log(time)
     let user = {
         username : username,
         time : time
     }
+
     axios.post('http://localhost:8080/admin/users/money',user).then(res =>{
-        alert("Nạp tiền thành công")
+        alert("Nạp tiền thành công");
+        let idUser = res.data.id;
+        let transactionHistory={
+            user : {
+                id : idUser
+            },
+            price : money
+        }
+            axios.post('http://localhost:8080/history',transactionHistory).then(res =>{
+                console.log("Lưu lịch sử thành công")
+            })
     })
 }
 
@@ -120,9 +129,17 @@ function checkInput(errors) {
     })
 }
 
-// // Đặt thời gian kết thúc đếm ngược (ví dụ: 5 phút từ bây giờ)
-// let countdownDate = new Date().getTime() + 5 * 6000 * 1000;
-// localStorage.setItem('countdownTimes', JSON.stringify(countdownDate));
+// let countdownDate = localStorage.getItem('countdownDate');
+//
+// if (!countdownDate) {
+//     // Nếu không có giá trị trong localStorage, tạo giá trị mới
+//     countdownDate = new Date().getTime() + 5 * 60 * 1000; // Đếm ngược 5 phút
+//     localStorage.setItem('countdownDate', countdownDate);
+// } else {
+//     // Chuyển đổi giá trị từ localStorage thành số
+//     countdownDate = parseInt(countdownDate, 10);
+// }
+//
 // // Cập nhật đếm ngược mỗi giây
 // const countdownInterval = setInterval(() => {
 //     const now = new Date().getTime();
@@ -139,6 +156,6 @@ function checkInput(errors) {
 //     if (distance < 0) {
 //         clearInterval(countdownInterval);
 //         document.getElementById("countdown").innerHTML = "EXPIRED";
+//         localStorage.removeItem('countdownDate');
 //     }
-//     localStorage.setItem('countdownTimes', JSON.stringify(countdownTimes));
 // }, 1000);
