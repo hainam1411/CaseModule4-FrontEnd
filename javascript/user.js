@@ -10,14 +10,16 @@ function getAll(t, elm) {
             console.log(products);
             let html = ``;
             for (let i = 0; i < products.length; i++) {
-                let product = `<div class="card col-12 col-md-1">
-                  <img src="./assets/food.png" alt="" class="img-fluid  d-block mx-auto"/>
+                let product = `<div class=" col-12 col-md-3">
+                      <div class="card border-0"> 
+                  <img src="./assets/food.png" alt="" class="img-fluid card-img-top"/>
                   <div class="card-body">
-                    <h5 class="card-title">${products[i].name}</h5>
+                    <h6 class="card-title text-center">${products[i].name}</h6>
                   </div>
                   <div class="d-flex justify-content-around mb-5">
-                    <h3>${products[i].price} vnđ</h3>
+                    <h3 class="text-danger">${products[i].price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}</h3>
                   </div>
+                  </div> 
                 </div>`;
                 html += product;
             }
