@@ -9,7 +9,7 @@ function showFromCreate(productId) {
                 <span id="errorquantity"></span>
                 <button onclick="addOrder(${productId})">Add</button>
             </div>`;
-        document.getElementById("main").innerHTML = html;
+        document.getElementById("addCart").innerHTML = html;
     });
 }
 
