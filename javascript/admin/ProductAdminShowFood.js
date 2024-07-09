@@ -1,7 +1,6 @@
 function productAdminShowFood() {
     axios.get('http://localhost:8080/products/food')
         .then(function (response) {
-            document.getElementById("main").innerHTML = "";
             let product = response.data;
             let html = `<table border="1">
                              <tr>

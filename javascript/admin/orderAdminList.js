@@ -26,7 +26,7 @@ function getAllOrderList(page = 0, size = 5) {
                          </tr>`;
             });
             html += `</table>`;
-            document.getElementById("root").innerHTML = html;
+            document.getElementById("main").innerHTML = html;
         })
         .catch(error => {
             console.error('Error fetching order details:', error);
