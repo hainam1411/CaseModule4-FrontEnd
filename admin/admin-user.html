@@ -11,7 +11,7 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="css/adminlte.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="css/all.min.css">
+<!--    <link rel="stylesheet" href="css/all.min.css">-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
           integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
     <link rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
@@ -47,6 +47,7 @@
                            aria-label="Search">
                     <div class="input-group-append">
                         <button class="btn btn-sidebar">
+<!--                            <i class="fas fa-search"></i>-->
                             <i class="fas fa-search fa-fw"></i>
                         </button>
                     </div>
@@ -60,12 +61,12 @@
                     <li class="nav-item menu-open">
                         <a href="#" class="nav-link">
                             <p>
-                               Sản Phẩm
+                                Sản Phẩm
                             </p>
                         </a>
                         <ul class="nav nav-treeview ">
                             <li class="nav-item">
-                                <a href="#" class="nav-link active">
+                                <a href="#" class="nav-link">
                                     <p>
                                         Đồ Ăn
                                     </p>
@@ -73,20 +74,15 @@
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                    <p>Đồ Uống</p>
-                                </a>
+                                    <p>Đồ Uống</p></a>
                             </li>
                         </ul>
-                    <!-- Add icons to the links using the .nav-icon class
-                         with font-awesome or any other icon font library -->
+                        <!-- Add icons to the links using the .nav-icon class
+                             with font-awesome or any other icon font library -->
                     <li class="nav-item menu-open">
-<!--                        <a href="#" class="nav-link active">-->
-<!--                            <p>-->
-<!--                                Đồ Ăn-->
-<!--                            </p>-->
-<!--                        </a>-->
+
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="#" class="nav-link active" onclick="showListUser()">
                             <p>Tài Khoản</p>
                         </a>
                     </li>
@@ -125,7 +121,8 @@
                     <div class="col-sm-2">
                         <div class="p-2">
                             <!--Thêm mới đồ ăn-->
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">
                                 <i class="fas fa-user-plus">Thêm mới</i>
                             </button>
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -133,25 +130,23 @@
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="modal-food">Thêm mới đồ ăn </h1>
+                                            <h1 class="modal-title fs-5" id="modal-food">Thêm Tài Khoản </h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                             <div class="mb-3">
-                                                <label for="foodName" class="form-label">Tên Đồ Ăn</label>
+                                                <label for="foodName" class="form-label">Tên Tài Khoản</label>
                                                 <input class="form-control" id="foodName" placeholder="">
                                             </div>
                                             <div class="mb-3">
-                                                <label for="foodCost" class="form-label">Đơn Giá</label>
+                                                <label for="foodCost" class="form-label">Số CCCD</label>
                                                 <input class="form-control" id="foodCost" placeholder="">
                                             </div>
-                                            <div class="mb-3">
-                                                <label for="formFile" class="form-label">Ảnh</label>
-                                                <input class="form-control" type="file" id="formFile">
-                                            </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                    Huỷ
+                                                </button>
                                                 <button type="button" class="btn btn-primary">Lưu</button>
                                             </div>
                                         </div>
@@ -173,93 +168,8 @@
                     <div class="col-lg-12">
                         <!-- /.card -->
                         <div class="card">
-<!--                            <div class="card-header border-0">-->
-<!--                                <h3 class="card-title">Products</h3>-->
-<!--                            </div>-->
-                            <div class="card-body table-responsive p-0">
-                                <table class="table table-striped table-valign-middle">
-                                    <thead>
-                                    <tr>
-                                        <th>STT</th>
-                                        <th>Đồ Ăn</th>
-                                        <th>Giá</th>
-                                        <th>Hình ảnh</th>
-                                        <th>Thao Tác</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Mì tôm</td>
-                                        <td>20.000VND</td>
-                                        <td><img src="../assets/food.png" height="100" width="auto"/></td>
-                                        <td>
-                                            <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
-                                            <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Bánh Mì</td>
-                                        <td>20.000VND</td>
-                                        <td><img src="../assets/food3.png" height="100" width="auto"/></td>
-                                        <td>
-                                            <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
-                                            <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Bún Bò</td>
-                                        <td>20.000VND</td>
-                                        <td><img src="../assets/food3.png" height="100" width="auto"/></td>
-                                        <td>
-                                            <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
-                                            <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>Phở Bò</td>
-                                        <td>20.000VND</td>
-                                        <td><img src="../assets/food3.png" height="100" width="auto"/></td>
-                                        <td>
-                                            <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
-                                            <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>Phở Gà</td>
-                                        <td>20.000VND</td>
-                                        <td><img src="../assets/food3.png" height="100" width="auto"/></td>
-                                        <td>
-                                            <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
-                                            <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>Phở Gà</td>
-                                        <td>20.000VND</td>
-                                        <td><img src="../assets/food3.png" height="100" width="auto"/></td>
-                                        <td>
-                                            <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
-                                            <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>Phở Gà</td>
-                                        <td>20.000VND</td>
-                                        <td><img src="../assets/food3.png" height="100" width="auto"/></td>
-                                        <td>
-                                            <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
-                                            <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                            <div id="listUser" class="card-body table-responsive p-0">
+
                             </div>
                         </div>
                         <!-- /.card -->
@@ -289,9 +199,70 @@
 </footer>
 </div>
 <!-- ./wrapper -->
-
+<!--Modal Nap Tien-->
+<div class="modal fade" id="naptien" tabindex="-1" aria-labelledby="modalMoney"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Nạp tiền</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="foodName" class="form-label">Tên Tài Khoản</label>
+                    <input class="form-control" id="txtUpdateUser" placeholder="" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="foodCost" class="form-label">Số tiền</label>
+                    <input class="form-control" id="txtUpdateMoney" placeholder="">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Huỷ
+                    </button>
+                    <button type="button" class="btn btn-primary">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/Modal Nap Tien-->
+<!--&lt;!&ndash;Modal Update&ndash;&gt;-->
+<div class="modal fade" id="updateUser" tabindex="-1" aria-labelledby="updateUser"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Nạp tiền</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="foodName" class="form-label">Tên Tài Khoản</label>
+                    <input class="form-control" id="txtUser" placeholder="" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="foodCost" class="form-label">Mật Khẩu Mới</label>
+                    <input class="form-control" id="txtUpdatePassword" placeholder="">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Huỷ
+                    </button>
+                    <button type="button" class="btn btn-primary">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/Modal Update-->
 <!-- REQUIRED SCRIPTS -->
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js"
+        integrity="sha512-JSCFHhKDilTRRXe9ak/FJ28dcpOJxzQaCd3Xg8MyF6XFjODhy/YMCM8HW0TFDckNHWUewW+kfvhin43hKtJxAw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- jQuery -->
 <script src="js-admin/jquery.min.js"></script>
 <!-- Bootstrap -->
@@ -300,13 +271,14 @@
 <script src="js-admin/adminlte.js"></script>
 
 <!-- OPTIONAL SCRIPTS -->
-<script src="js-admin/Chart.min.js"></script>
+<!--<script src="js-admin/Chart.min.js"></script>-->
 <!-- AdminLTE for demo purposes -->
 <script src="js-admin/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="js-admin/dashboard3.js"></script>
+<!--<script src="js-admin/dashboard3.js"></script>-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+<script src="js-admin/admin-user.js"></script>
 </body>
 </html>
