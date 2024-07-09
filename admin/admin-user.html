@@ -104,7 +104,6 @@
         </div>
         <!-- /.sidebar -->
     </aside>
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -136,18 +135,25 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="mb-3">
-                                                <label for="foodName" class="form-label">Tên Tài Khoản</label>
-                                                <input class="form-control" id="foodName" placeholder="">
+                                                <label for="username" class="form-label">Tên Tài Khoản</label>
+                                                <input class="form-control" id="username" placeholder="">
+                                                <span id="errorusername"></span>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="foodCost" class="form-label">Số CCCD</label>
-                                                <input class="form-control" id="foodCost" placeholder="">
+                                                <label for="password" class="form-label">Mật Khẩu</label>
+                                                <input class="form-control" id="password" placeholder="">
+                                                <span id="errorpassword"></span>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="identityCode" class="form-label">Số CCCD</label>
+                                                <input class="form-control" id="identityCode" placeholder="">
+                                                <span id="erroridentityCode"></span>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                                                     Huỷ
                                                 </button>
-                                                <button type="button" class="btn btn-primary">Lưu</button>
+                                                <button type="button" class="btn btn-primary" onclick="createUser()">Lưu</button>
                                             </div>
                                         </div>
                                     </div>
@@ -168,7 +174,7 @@
                     <div class="col-lg-12">
                         <!-- /.card -->
                         <div class="card">
-                            <div id="listUser" class="card-body table-responsive p-0">
+                            <div id="main" class="card-body table-responsive p-0">
 
                             </div>
                         </div>
@@ -222,7 +228,7 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                         Huỷ
                     </button>
-                    <button type="button" class="btn btn-primary">Lưu</button>
+                    <button type="button" class="btn btn-primary" onclick="updateMoney()">Lưu</button>
                 </div>
             </div>
         </div>
@@ -252,7 +258,7 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                         Huỷ
                     </button>
-                    <button type="button" class="btn btn-primary">Lưu</button>
+                    <button type="button" class="btn btn-primary" onclick="updatePassword()">Lưu</button>
                 </div>
             </div>
         </div>
