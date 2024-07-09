@@ -48,7 +48,7 @@ function update(id) {
     }
     axios.put('http://localhost:8080/cars/'+id, product).then(res => {
         alert("Sửa thành công");
-        getAll()
+        getAllProduct()
     }).catch(error =>{
         console.log(error.response)
 
