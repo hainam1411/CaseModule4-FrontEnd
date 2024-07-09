@@ -21,7 +21,7 @@ function getAll(t, elm) {
                     <h3 class="text-danger">${products[i].price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}</h3>
                   </div>
                   <div class="col-lg-3 col-md-2  justify-content-around mx-auto">
-                  <button type="submit" class="btn btn-danger" id="addCard" onclick="showFromOrder()" ><i class="fa-solid fa-cart-shopping"></i></button>
+                  <button type="submit" class="btn btn-danger" id="addCard" onclick="showFromOrder()" ><i class="fas fa-shopping-cart"></i></button>
                     </div>
                   </div>
                   </div> 
