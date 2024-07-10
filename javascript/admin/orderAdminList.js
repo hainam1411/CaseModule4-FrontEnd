@@ -78,6 +78,7 @@ function getAllOrderList() {
     axios.get(`http://localhost:8080/order_admin/list`)
         .then(res => {
             let orderList = res.data;
+            console.log(orderList)
             let html = `
                 <div class="form-inline col-md-6">
                     <div class="input-group" data-widget="sidebar-search">
@@ -112,11 +113,17 @@ function getAllOrderList() {
             `;
             if (orderList && orderList.length > 0) {
                 orderList.forEach(orderItem => {
-                    let formattedDate = new Date(orderItem.orderDate).toLocaleDateString('vi-VN', {
+                    let orderDate = new Date(orderItem.orderDate);
+
+                    let formattedDate = `${orderDate.toLocaleDateString('vi-VN', {
                         day: '2-digit',
                         month: '2-digit',
                         year: 'numeric'
-                    });
+                    })}, ${orderDate.toLocaleTimeString('vi-VN', {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit'
+                    })}`;
                     html += `
                         <tr>
                             <td>${orderItem.id}</td>
