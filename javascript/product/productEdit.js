@@ -3,6 +3,7 @@ function showFromUpdate(id) {
         let product = res.data;
         axios.get('http://localhost:8080/categories').then(response => {
             let html = `
+            <div id="root"></div>
             <div>
                 <input type="number" id="id" value="${product.id}" readonly>
                 <input type="text" id="name" value="${product.name}">
@@ -27,9 +28,14 @@ function showFromUpdate(id) {
 
             html += `</select>
                     <span id="errorcategory"></span>
+                    <div>
                     <button onclick="update(${product.id})">Update</button>
+                    </div>
                 </div>
-            <div id="root"></div>
+                <div>
+                <button onclick="getAllProduct()">Hủy</button>
+                </div>
+            
 `;
 
             document.getElementById("main").innerHTML = html;
