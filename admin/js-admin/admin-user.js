@@ -15,7 +15,7 @@ function showListUser() {
                                     <tbody>`
         for (let i = 0; i < users.length; i++) {
                 let status = (users[i].enabled) ? "Hoạt động" : "Nghỉ";
-                let time = Math.round(users[i].time/60);
+                let time = formatTime(users[i].time);
             html += `<tr>
                                         <td>${i + 1}</td>
                                         <td>${users[i].username}</td>
@@ -129,36 +129,7 @@ function checkInput(errors) {
     })
 }
 
-// let countdownDate = localStorage.getItem('countdownDate');
-//
-// if (!countdownDate) {
-//     // Nếu không có giá trị trong localStorage, tạo giá trị mới
-//     countdownDate = new Date().getTime() + 5 * 60 * 1000; // Đếm ngược 5 phút
-//     localStorage.setItem('countdownDate', countdownDate);
-// } else {
-//     // Chuyển đổi giá trị từ localStorage thành số
-//     countdownDate = parseInt(countdownDate, 10);
-// }
-//
-// // Cập nhật đếm ngược mỗi giây
-// const countdownInterval = setInterval(() => {
-//     const now = new Date().getTime();
-//     const distance = countdownDate - now;
-//
-//     // Tính toán thời gian cho phút và giây
-//     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-//     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-//
-//     // Hiển thị kết quả trong phần tử có id="countdown"
-//     document.getElementById("countdown").innerHTML = minutes + "m " + seconds + "s ";
-//
-//     // Nếu thời gian đếm ngược kết thúc, hiển thị nội dung kết thúc
-//     if (distance < 0) {
-//         clearInterval(countdownInterval);
-//         document.getElementById("countdown").innerHTML = "EXPIRED";
-//         localStorage.removeItem('countdownDate');
-//     }
-// }, 1000);
+
 
 function showHistory() {
     axios.get('http://localhost:8080/history').then(res => {
@@ -204,4 +175,11 @@ function formatDate(dateString) {
     const formattedDate = `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
 
     return formattedDate;
+}
+function formatTime(seconds) {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const remainingSeconds = seconds % 60;
+
+    return `${hours}h ${minutes}m ${remainingSeconds}s`;
 }

@@ -12,7 +12,7 @@ function logout() {
         }
     }).then(res =>{
         localStorage.clear();
-        window.location.href = "../login.html";
+        window.location.href = "/login.html";
     }).catch(error =>{
         console.log(error)
     })

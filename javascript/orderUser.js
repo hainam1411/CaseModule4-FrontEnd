@@ -1,7 +1,6 @@
 
 function addOrder(productId) {
     let token = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(token)
     if (!token || !token.userId) {
         alert("User information not found. Please log in again.");
         return;
