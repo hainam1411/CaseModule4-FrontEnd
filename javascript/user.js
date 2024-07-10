@@ -170,20 +170,6 @@ function searchService() {
 
             let html = `
                     <div class="container-fluid d-flex flex-row-reverse">
-                <div class="row">
-                    <div class="form-inline col-md-6">
-                        <div class="input-group" data-widget="sidebar-search">
-                            <input class="form-control form-control-sidebar" type="search" placeholder="Search"
-                                   aria-label="Search" id="search">
-                            <div class="input-group-append">
-                                <button class="btn btn-sidebar" onclick="searchService()">
-                                    <i class="fas fa-search fa-fw"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div id="root"></div>
                     <div class="container-fluid">
                         <div class="row">
