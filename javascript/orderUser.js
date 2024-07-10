@@ -1,19 +1,7 @@
 
-function showFromOrder(productId) {
-    let html = `
-          <div>
-              <input type="text" value="">
-          </div>
-          <div>
-              <input type="text" id="quantity" placeholder="quantity">
-              <span id="errorquantity"></span>
-              <button onclick="addOrder(${productId})">Add</button>
-          </div>`;
-    document.getElementById("main").innerHTML = html;
-}
-
 function addOrder(productId) {
-    let token = JSON.parse(localStorage.getItem('currentuser'));
+    let token = JSON.parse(localStorage.getItem('currentUser'));
+    console.log(token)
     if (!token || !token.userId) {
         alert("User information not found. Please log in again.");
         return;

@@ -21,7 +21,7 @@ function getAll(t, elm) {
                     <h3 class="text-danger">${products[i].price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}</h3>
                   </div>
                   <div class="col-lg-3 col-md-2  justify-content-around mx-auto">
-                  <button type="submit" class="btn btn-danger" id="addCard" onclick="showFromOrder()" ><i class="fas fa-shopping-cart"></i></button>
+                  <button type="submit" class="btn btn-danger" id="addCard" onclick="showFormOrder()" ><i class="fas fa-shopping-cart"></i></button>
                     </div>
                   </div>
                   </div> 
@@ -34,43 +34,33 @@ function getAll(t, elm) {
 
 getAll(null, elm);
 
-function showFromOrder(productId) {
-    let html = `
-                                      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                 aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="modal-food">Thêm Tài Khoản </h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="mb-3">
-                                                <label for="foodName" class="form-label">Tên Tài Khoản</label>
-                                                <input class="form-control" id="foodName" placeholder="">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="foodCost" class="form-label">Số CCCD</label>
-                                                <input class="form-control" id="foodCost" placeholder="">
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                                    Huỷ
-                                                </button>
-                                                <button type="button" class="btn btn-primary">Lưu</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>`;
+function showFormOrder(productId) {
+    let html = `<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="https://via.placeholder.com/200" alt="Sản phẩm" class="product-image">
+        </div>
+        <div class="col-md-6">
+            <h1>Tên sản phẩm</h1>
+            <p id="product-price"><span>Giá: </span><strong></strong> </p>
+            <div class="quantity-control">
+                <button class="btn btn-secondary" id="decreaseQuantity">-</button>
+                <input type="text" id="quantity" value="1" class="form-control" style="width: 60px; text-align: center;">
+                <button class="btn btn-secondary" id="increaseQuantity">+</button>
+            </div>
+            <p class="mt-3">Tổng giá: <span id="total-price">100</span></p>
+            <button class="btn btn-primary" id="buyButton" onclick="addOrder()"><i class="fas fa-shopping-cart"></i></button>
+        </div>
+    </div>
+</div>
+                                   `;
     document.getElementById("main").innerHTML = html;
 }
 
 function addOrder(productId) {
-    let token = JSON.parse(localStorage.getItem('currentuser'));
+    let token = JSON.parse(localStorage.getItem('currentUser'));
     if (!token || !token.userId) {
-        alert("User information not found. Please log in again.");
+        alert("Hãy đăng nhập lại");
         return;
     }
     let user_id = token.userId;
@@ -84,7 +74,7 @@ function addOrder(productId) {
 
     axios.post('http://localhost:8080/order_user/add', orderData)
         .then(res => {
-            alert("Order added successfully");
+            alert("Đã gọi món. Xin chờ trong giây lát");
         })
         .catch(error => {
             checkInput(error.response.data);
@@ -101,22 +91,9 @@ function checkInput(errors) {
 
 function search() {
     let name = document.getElementById("search").value;
-    axios.get('http://localhost:8080/cars/search?name='+name).then(res => {
+    axios.get('http://localhost:8080/products/search?name='+name).then(res => {
         let cars = res.data;
-        let html = `<table border="1">
-                             <tr>
-                                 <td>Id</td>
-                                 <td>Name</td>
-                                 <td>Frame Code</td>
-                                 <td>Machine Code</td>
-                                 <td>Production Date</td>
-                                 <td>Price</td>
-                                 <td>Quantity</td>
-                                 <td>Image</td>
-                                 <td>Producer</td>
-                                 <td>Type</td>
-                                 <td colspan="2">Action</td>
-                             </tr>`;
+        let html = ``;
         for (let i = 0; i < cars.length; i++) {
             let dateArr = cars[i].productionDate;
             let dateObject = new Date(dateArr[0],dateArr[1]-1,dateArr[2]);

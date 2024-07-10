@@ -20,7 +20,7 @@ function userShowDrink(t, elm) {
                     <h3 class="text-danger">${products[i].price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}</h3>
                   </div>
                   <div class="col-lg-3 col-md-2  justify-content-around mx-auto">
-                  <button type="submit" class="btn btn-danger" id="addCard" onclick="showFromOrder()" ><i class="fas fa-shopping-cart"></i></i></button>
+                  <button type="submit" class="btn btn-danger" id="addCard" onclick="showFormOrder()" ><i class="fas fa-shopping-cart"></i></i></button>
                     </div>
                   </div>
                   </div> 
