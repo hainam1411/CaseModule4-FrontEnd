@@ -59,19 +59,12 @@ function showFormOrder(productId) {
 
 function addOrder(productId) {
     let token = JSON.parse(localStorage.getItem('currentUser'));
-    headers: {
-        Authorization: `Bearer ${token}`
-    }
 
-    if (!token || !token.id) {
-        alert("Hãy đăng nhập lại");
-        return;
-    }
     let user_id = token.id;
     let quantity = document.getElementById("quantity").value;
 
     let orderData = {
-        userId: user_id,
+        id: user_id,
         productId: productId,
         quantity: parseInt(quantity)
     };
@@ -81,7 +74,7 @@ function addOrder(productId) {
             alert("Đã gọi món. Xin chờ trong giây lát");
         })
         .catch(error => {
-            checkInput(error.response.data);
+            // checkInput(error.response.data);
         });
 }
 
