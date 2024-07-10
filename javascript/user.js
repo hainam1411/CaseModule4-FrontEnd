@@ -89,45 +89,6 @@ function checkInput(errors) {
 }
 
 
-function search() {
-    let name = document.getElementById("search").value;
-    axios.get('http://localhost:8080/products/search?name='+name).then(res => {
-        let cars = res.data;
-        let html = ``;
-        for (let i = 0; i < cars.length; i++) {
-            let dateArr = cars[i].productionDate;
-            let dateObject = new Date(dateArr[0],dateArr[1]-1,dateArr[2]);
-            let dateString = dateObject.getFullYear() + '-' + ('0' + (dateObject.getMonth() + 1)).slice(-2) + '-' + ('0' + dateObject.getDate()).slice(-2);
-            let type_name = (cars[i].type != null) ? cars[i].type.name : null;
-            let producer_name = (cars[i].producer != null) ? cars[i].producer.name : null;
-            html += `<tr>
-                                <td>${cars[i].id}</td>
-                                <td>${cars[i].name}</td>
-                                <td>${cars[i].frameCode}</td>
-                                <td>${cars[i].machineCode}</td>
-                                <td>${dateString}</td>
-                                <td>${cars[i].price}</td>
-                                <td>${cars[i].quantity}</td>
-                                <td><img src="${cars[i].image}" alt=""></td>
-                                <td>${producer_name}</td>
-                                <td>${type_name}</td>
-                                <td><button onclick="showFromUpdate(${cars[i].id})">Edit</button></td>
-                                <td><button onclick="remove(${cars[i].id})">Delete</button></td>
-                             </tr>`
-        }
-        html += `</table>`;
-        document.getElementById("main").innerHTML = html;
-    })
-}
-
-function goToProducer() {
-    window.location.href = "producer.html"
-}
-
-function goToType() {
-    window.location.href = "type.html"
-}
-
 // function getgames() {
 //     const element = document.querySelector('.nav-link.active');
 //     if (element) {
