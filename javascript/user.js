@@ -18,7 +18,9 @@ function getAll(t, elm) {
                   </div>
                   <div class="row">
                   <div class="col-lg-9 col-md-10  justify-content-around mb-5">
-                    <h3 class="text-danger">${products[i].price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}</h3>
+                    <h3 class="text-danger">${products[i].price.toLocaleString('it-IT', {
+                    style: 'currency', currency: 'VND'
+                })}</h3>
                   </div>
                   <div class="col-lg-3 col-md-2  justify-content-around mx-auto">
                   <button type="submit" class="btn btn-danger" id="addCard" onclick="showFormOrder()" ><i class="fas fa-shopping-cart"></i></button>
@@ -67,9 +69,7 @@ function addOrder(productId) {
     let quantity = document.getElementById("quantity").value;
 
     let orderData = {
-        userId: user_id,
-        productId: productId,
-        quantity: parseInt(quantity)
+        userId: user_id, productId: productId, quantity: parseInt(quantity)
     };
 
     axios.post('http://localhost:8080/order_user/add', orderData)
@@ -90,13 +90,6 @@ function checkInput(errors) {
 
 
 function getGame() {
-    // const element = document.querySelector('.nav-link.active');
-    // if (element) {
-    //     element.classList.remove('active');
-    // }
-
-    // Thêm class "active" vào phần tử được chỉ định
-    // document.getElementById(elm).classList.add("active");
     let games = document.getElementById("games");
     let html = `
     <div class="col-md-10" style="">
@@ -156,9 +149,8 @@ function getGame() {
 
     `;
     document.getElementById("main").innerHTML = html;
-    // Thêm đoạn HTML vào phần tử có id "games"
-    // document.getElementById('games').innerHTML = html;
 }
+
 getGame();
 
 
