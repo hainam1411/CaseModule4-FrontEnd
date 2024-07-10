@@ -58,12 +58,16 @@ function showFormOrder(productId) {
 }
 
 function addOrder(productId) {
-    let token = JSON.parse(localStorage.getItem('currentuser'));
-    if (!token || !token.userId) {
+    let token = JSON.parse(localStorage.getItem('currentUser'));
+    headers: {
+        Authorization: `Bearer ${token}`
+    }
+
+    if (!token || !token.id) {
         alert("Hãy đăng nhập lại");
         return;
     }
-    let user_id = token.userId;
+    let user_id = token.id;
     let quantity = document.getElementById("quantity").value;
 
     let orderData = {
