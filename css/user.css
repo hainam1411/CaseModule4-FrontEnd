@@ -20,3 +20,14 @@ ul li a:hover{
 .card:hover {
     transform: scale(1.1);
 }
+.product-image {
+    max-width: 100%;
+    height: auto;
+}
+.quantity-control {
+    display: flex;
+    align-items: center;
+}
+.quantity-control button {
+    margin: 0 5px;
+}
