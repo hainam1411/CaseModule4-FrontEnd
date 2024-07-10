@@ -176,6 +176,7 @@ function searchService() {
                             <div class="row col-lg-12">
                                 <div class="card col">
                                     <div class="card-body table-responsive p-0">
+                                    
                                         <table class="table table-striped table-valign-middle">
                                             <thead>
                                                 <tr>
