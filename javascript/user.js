@@ -89,77 +89,76 @@ function checkInput(errors) {
 }
 
 
-// function getgames() {
-//     const element = document.querySelector('.nav-link.active');
-//     if (element) {
-//         element.classList.remove('active');
-//     }
-//
-//     // Thêm class "active" vào phần tử được chỉ định
-//     document.getElementById(elm).classList.add("active");
-//     let games = document.getElementById("games");
-//     let html = `
-//     <div class="col-md-10">
-//         <div class="row g-4 mx-auto p-3">
-//             <div class="card col-12 col-md-1 text-center text-md-center mx-auto">
-//                 <img src="assets/logogame/lol.jpg"/>LoL
-//             </div>
-//             <div class="card col-12 col-md-1 text-center text-md-center mx-auto">
-//                 <img src="assets/logogame/lol.jpg"/>LoL
-//             </div>
-//             <div class="card col-12 col-md-1 text-center text-md-center mx-auto">
-//                 <img src="assets/logogame/lol.jpg"/>LoL
-//             </div>
-//             <div class="card col-12 col-md-1 text-center text-md-center mx-auto">
-//                 <img src="assets/logogame/lol.jpg"/>LoL
-//             </div>
-//             <div class="card col-12 col-md-1 text-center text-md-center mx-auto">
-//                 <img src="assets/logogame/lol.jpg"/>LoL
-//             </div>
-//             <div class="card col-12 col-md-1 text-center text-md-center mx-auto">
-//                 <img src="assets/logogame/lol.jpg"/>LoL
-//             </div>
-//             <div class="card col-12 col-md-1 text-center text-md-center mx-auto">
-//                 <img src="assets/logogame/lol.jpg"/>LoL
-//             </div>
-//             <div class="card col-12 col-md-1 text-center text-md-center mx-auto">
-//                 <img src="assets/logogame/lol.jpg"/>LoL
-//             </div>
-//         </div>
-//         <div class="row g-4 mx-auto p-3">
-//             <div class="card col-12 col-md-1 text-center text-md-center mx-auto">
-//                 <img src="assets/logogame/lol.jpg"/>LoL
-//             </div>
-//             <div class="card col-12 col-md-1 text-center text-md-center mx-auto">
-//                 <img src="assets/logogame/lol.jpg"/>LoL
-//             </div>
-//             <div class="card col-12 col-md-1 text-center text-md-center mx-auto">
-//                 <img src="assets/logogame/lol.jpg"/>LoL
-//             </div>
-//             <div class="card col-12 col-md-1 text-center text-md-center mx-auto">
-//                 <img src="assets/logogame/lol.jpg"/>LoL
-//             </div>
-//             <div class="card col-12 col-md-1 text-center text-md-center mx-auto">
-//                 <img src="assets/logogame/lol.jpg"/>LoL
-//             </div>
-//             <div class="card col-12 col-md-1 text-center text-md-center mx-auto">
-//                 <img src="assets/logogame/lol.jpg"/>LoL
-//             </div>
-//             <div class="card col-12 col-md-1 text-center text-md-center mx-auto">
-//                 <img src="assets/logogame/lol.jpg"/>LoL
-//             </div>
-//             <div class="card col-12 col-md-1 text-center text-md-center mx-auto">
-//                 <img src="assets/logogame/lol.jpg"/>LoL
-//             </div>
-//         </div>
-//
-//     `;
-//     games.insertAdjacentElement('afterend', html);
-//
-//     // Thêm đoạn HTML vào phần tử có id "games"
-//     // document.getElementById('games').innerHTML = html;
-// }
-//
-// getgames(null, elm);
+function getGame() {
+    // const element = document.querySelector('.nav-link.active');
+    // if (element) {
+    //     element.classList.remove('active');
+    // }
+
+    // Thêm class "active" vào phần tử được chỉ định
+    // document.getElementById(elm).classList.add("active");
+    let games = document.getElementById("games");
+    let html = `
+    <div class="col-md-10" style="">
+    <div class="row g-4 mx-auto p-3">
+        <div class="card col-12 col-md-1 text-center text-md-center mx-auto border-0 text-bold">
+            <img class="game" src="assets/logogame/lol.jpg"/>League of legends
+        </div>
+        <div class="card col-12 col-md-1 text-center text-md-center mx-auto border-0 text-bold">
+            <img class="game" src="assets/logogame/logo.webp"/>Genshin impact
+        </div>
+        <div class="card col-12 col-md-1 text-center text-md-center mx-auto border-0 text-bold">
+            <img class="game" src="assets/logogame/csgo.jpg"/>CS: go
+        </div>
+        <div class="card col-12 col-md-1 text-center text-md-center mx-auto border-0 text-bold">
+            <img class="game" src="assets/logogame/honkai3.png"/>Honkai impact 3
+        </div>
+        <div class="card col-12 col-md-1 text-center text-md-center mx-auto border-0 text-bold">
+            <img class="game" src="assets/logogame/pubg.png"/>Pubg
+        </div>
+        <div class="card col-12 col-md-1 text-center text-md-center mx-auto border-0 text-bold">
+            <img class="game" src="assets/logogame/CoD.png"/>Call of duty
+        </div>
+        <div class="card col-12 col-md-1 text-center text-md-center mx-auto border-0 text-bold">
+            <img class="game" src="assets/logogame/dota.jpg"/>Dota 2
+        </div>
+        <div class="card col-12 col-md-1 text-center text-md-center mx-auto border-0 text-bold">
+            <img class="game" src="assets/logogame/val.png"/>Valorant
+        </div>
+        </div>
+
+         <div class="row g-4 mx-auto p-3">
+        <div class="card col-12 col-md-1 text-center text-md-center mx-auto border-0 text-bold">
+            <img class="game" src="assets/logogame/sekiro.jpg"/>Sekiro
+        </div>
+        <div class="card col-12 col-md-1 text-center text-md-center mx-auto border-0 text-bold">
+            <img class="game" src="assets/logogame/RE2.jpg"/>Resident Evil 2
+        </div>
+        <div class="card col-12 col-md-1 text-center text-md-center mx-auto border-0 text-bold">
+            <img class="game" src="assets/logogame/nier.jpg"/>Nier Automata
+        </div>
+        <div class="card col-12 col-md-1 text-center text-md-center mx-auto border-0 text-bold">
+            <img class="game" src="assets/logogame/warframe.avif"/>Warframe
+        </div>
+        <div class="card col-12 col-md-1 text-center text-md-center mx-auto border-0 text-bold">
+            <img class="game" src="assets/logogame/naraka.jpeg"/>Naraka
+        </div>
+        <div class="card col-12 col-md-1 text-center text-md-center mx-auto border-0 text-bold">
+            <img class="game" src="assets/logogame/R6.jpg"/>Rainbow 6
+        </div>
+        <div class="card col-12 col-md-1 text-center text-md-center mx-auto border-0 text-bold">
+            <img class="game" src="assets/logogame/apex.png"/>Apex legend
+        </div>
+        <div class="card col-12 col-md-1 text-center text-md-center mx-auto border-0 text-bold">
+            <img class="game" src="assets/logogame/ww.jpg"/>Wuthering waves
+        </div>
+        </div>
+
+    `;
+    document.getElementById("main").innerHTML = html;
+    // Thêm đoạn HTML vào phần tử có id "games"
+    // document.getElementById('games').innerHTML = html;
+}
+getGame();
 
 
