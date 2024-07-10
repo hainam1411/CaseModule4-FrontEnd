@@ -17,7 +17,7 @@ function getOrderDetailsByUserName() {
 
             axios.get(`http://localhost:8080/order_admin/users/${username}/totalAmount`)
                 .then(response => {
-                    let totalAmount = response.data; // Lấy tổng số tiền từ phản hồi API
+                    let totalAmount = response.data;
                     let html = `
                         <div class="form-inline col-md-6">
                     <div class="input-group" data-widget="sidebar-search">
@@ -30,6 +30,7 @@ function getOrderDetailsByUserName() {
                         </div>
                     </div>
                 </div>
+                <div id="root"></div>
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
@@ -51,14 +52,19 @@ function getOrderDetailsByUserName() {
             `;
                     if (orderList && orderList.length > 0) {
                         orderList.forEach(orderItem => {
+                            let formattedDate = new Date(orderItem.orderDate).toLocaleDateString('vi-VN', {
+                                day: '2-digit',
+                                month: '2-digit',
+                                year: 'numeric'
+                            });
                             html += `
                         <tr>
                             <td>${orderItem.id}</td>
-                            <td>${orderItem.product_name}</td>
+                            <td>${orderItem.productName}</td>
                             <td>${orderItem.price}</td>
                             <td>${orderItem.quantity}</td>
-                            <td>${orderItem.order_date}</td>
-                            <td>${orderItem.user_name}</td>
+                            <td>${formattedDate}</td>
+                            <td>${orderItem.userName}</td>
                             <td><button class="btn btn-danger" onclick="removeOrder(${orderItem.id})">Xóa</button></td>
                         </tr>
                     `;
@@ -75,16 +81,16 @@ function getOrderDetailsByUserName() {
                     </div>
                 </div>
                 `;
-                    html += `<p>Total amount spent: ${totalAmount}</p>`; // Hiển thị tổng số tiền
+                    html += `<p>Total amount spent: ${totalAmount}</p>`;
                     document.getElementById("main").innerHTML = html;
                 })
                 .catch(error => {
                     console.error('Error fetching total amount:', error);
-                    document.getElementById("main").innerHTML = `<p>Lỗi số tiền</p>`;
+                    document.getElementById("root").innerHTML = `<p>Lỗi số tiền</p>`;
                 });
         })
         .catch(error => {
             console.error('Error fetching order details:', error);
-            document.getElementById("main").innerHTML = `<p>Lỗi chi tiết đơn hàng</p>`;
+            document.getElementById("root").innerHTML = `<p>Lỗi chi tiết đơn hàng</p>`;
         });
 }

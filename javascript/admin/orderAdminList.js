@@ -120,11 +120,11 @@ function getAllOrderList() {
                     html += `
                         <tr>
                             <td>${orderItem.id}</td>
-                            <td>${orderItem.name}</td>
+                            <td>${orderItem.productName}</td>
                             <td>${orderItem.price}</td>
                             <td>${orderItem.quantity}</td>
                             <td>${formattedDate}</td>
-                            <td>${orderItem.username}</td>
+                            <td>${orderItem.userName}</td>
                             <td><button class="btn btn-danger" onclick="removeOrder(${orderItem.id})">Xóa</button></td>
                         </tr>
                     `;
