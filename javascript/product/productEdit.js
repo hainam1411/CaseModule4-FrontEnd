@@ -28,14 +28,17 @@ function showFromUpdate(id) {
             html += `</select>
                     <span id="errorcategory"></span>
                     <button onclick="update(${product.id})">Update</button>
-                </div>`;
+                </div>
+            <div id="root"></div>
+`;
 
             document.getElementById("main").innerHTML = html;
         }).catch(error => {
-            console.error("Error fetching categories:", error);
+            console.error("Lỗi khi tìm categories:", error);
         });
     }).catch(error => {
-        console.error("Error fetching product:", error);
+        console.error("Lỗi khi tìm sản phẩm", error);
+        document.getElementById("root").innerHTML = html;
     });
 }
 

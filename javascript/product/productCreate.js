@@ -28,12 +28,15 @@ function showFromCreate() {
                             Huỷ
                         </button>
                         <button type="button" class="btn btn-primary" onclick="createProduct()">Lưu</button>
-                    </div>`;
+                    </div>
+                    <div id="root"></div>
+`;
 
             document.getElementById("main").innerHTML = html;
         })
         .catch(error => {
-            console.error('Error fetching categories:', error);
+            console.error('Lỗi khi tìm categories:', error);
+            document.getElementById("root").innerHTML = html;
         });
 }
 

@@ -45,7 +45,7 @@ function getAllProduct() {
                                     <tbody>
         `;
             for (let i = 0; i < product.length; i++) {
-                let category_name = (product[i].type != null) ? product[i].type.name : null;
+                let category_name = (product[i].category != null) ? product[i].category.name : null;
                 html += `
             <tr>
                   <td>${product[i].id}</td>
@@ -79,8 +79,7 @@ function searchProduct() {
         .then(res => {
             let products = res.data;
             if (products.length === 0) {
-                // Hiển thị thông báo khi không tìm thấy sản phẩm
-                document.getElementById("main").innerHTML = '<p>Không tìm thấy sản phẩm nào.</p>';
+                document.getElementById("root").innerHTML = '<p>Không tìm thấy sản phẩm nào.</p>';
                 return;
             }
 
@@ -108,6 +107,7 @@ function searchProduct() {
                     </div>
                 </div>
             </div>
+            <div id="root"></div>
                     <div class="container-fluid">
                         <div class="row">
                             <div class="row col-lg-12">
@@ -154,7 +154,6 @@ function searchProduct() {
         })
         .catch(error => {
             console.error('Error fetching products:', error);
-            // Xử lý lỗi khi request không thành công
-            document.getElementById("main").innerHTML = '<p>Có lỗi xảy ra khi tải dữ liệu.</p>';
+            document.getElementById("root").innerHTML = '<p>Có lỗi xảy ra khi tải dữ liệu.</p>';
         });
 }

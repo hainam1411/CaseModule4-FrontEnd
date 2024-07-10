@@ -58,6 +58,7 @@ function getAllOrderList(page = 0, size = 5) {
             document.getElementById("main").innerHTML = html;
         })
         .catch(error => {
-            console.error('Error fetching order details:', error);
+            console.error('Lỗi orderDetail', error);
+            document.getElementById("main").innerHTML = `<p>Lỗi orderDetail</p>`;
         });
 }
