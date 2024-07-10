@@ -6,13 +6,12 @@ function login() {
         password : password
     }
     axios.post("http://localhost:8080/login",userLogin).then(res =>{
-        console.log(res.data)
         alert("Đăng nhập thành công")
         localStorage.setItem("currentUser",JSON.stringify(res.data))
-        let token = getCurrenUser().accessToken;
-        // showUsers(token)
+        // điều hướng
     }).catch(error =>{
-        console.log(error.response.data)
-        alert("Sai tài khoản hoặc mật khẩu")
+        let notification = error.response.data;
+        let check = (typeof notification === 'string')?error.response.data:"Sai tài khoản hoặc mật khẩu";
+        alert(check)
     })
 }
