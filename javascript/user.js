@@ -8,9 +8,11 @@ function getAll(t, elm) {
         .then(function (response) {
             let products = response.data;
             console.log(products);
-            let html = ``;
+
+            let product = ``;
+
             for (let i = 0; i < products.length; i++) {
-                let product = `<div class=" col-12 col-md-3">
+                product += `<div class=" col-12 col-md-3">
                       <div class="card border-0"> 
                   <img src="./assets/food.png" alt="" class="img-fluid card-img-top"/>
                   <div class="card-body">
@@ -28,9 +30,8 @@ function getAll(t, elm) {
                   </div>
                   </div> 
                 </div>`;
-                html += product;
             }
-            document.getElementById('main').innerHTML = html;
+            document.getElementById('main').innerHTML = product;
         })
 }
 
@@ -81,7 +82,7 @@ function addOrder(productId) {
             alert("Đã gọi món. Xin chờ trong giây lát");
         })
         .catch(error => {
-            checkInput(error.response.data);
+            // checkInput(error.response.data);
         });
 }
 
@@ -156,5 +157,79 @@ function getGame() {
 }
 
 getGame();
+
+function searchService() {
+    let name = document.getElementById("search").value;
+    axios.get('http://localhost:8080/products/search?name=' + name)
+        .then(res => {
+            let products = res.data;
+            if (products.length === 0) {
+                document.getElementById("root").innerHTML = '<p>Không tìm thấy sản phẩm nào.</p>';
+                return;
+            }
+
+            let html = `
+                    <div class="container-fluid d-flex flex-row-reverse">
+                <div class="row">
+                    <div class="form-inline col-md-6">
+                        <div class="input-group" data-widget="sidebar-search">
+                            <input class="form-control form-control-sidebar" type="search" placeholder="Search"
+                                   aria-label="Search" id="search">
+                            <div class="input-group-append">
+                                <button class="btn btn-sidebar" onclick="searchService()">
+                                    <i class="fas fa-search fa-fw"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="root"></div>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="row col-lg-12">
+                                <div class="card col">
+                                    <div class="card-body table-responsive p-0">
+                                        <table class="table table-striped table-valign-middle">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Đồ Uống</th>
+                                                    <th>Giá</th>
+                                                    <th>Hình ảnh</th>
+                                                    <th>Thể Loại</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>`;
+
+            products.forEach(product => {
+                let category_name = (product.category != null) ? product.category.name : null;
+                html += `
+                    <tr>
+                        <td>${product.id}</td>
+                        <td>${product.name}</td>
+                        <td>${product.price}</td>
+                        <td><img src="${product.image}" alt=""></td>
+                        <td>${category_name}</td>
+                        <td><button type="submit" class="btn btn-danger" id="addCard" onclick="showFormOrder()" ><i class="fas fa-shopping-cart"></i></button></td>
+                    </tr>`;
+            });
+
+            html += `           </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+`;
+
+            document.getElementById("main").innerHTML = html;
+        })
+        .catch(error => {
+            console.error('Error fetching products:', error);
+            document.getElementById("root").innerHTML = '<p>Có lỗi xảy ra khi tải dữ liệu.</p>';
+        });
+}
 
 
