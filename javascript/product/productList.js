@@ -18,9 +18,8 @@ function getAllProduct() {
                     </div>
                     <div class="col-md-6">
                         <div class="p-2">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal" onclick="showFromCreate()">
-                                <i class="fas fa-user-plus">Thêm mới</i>
+                            <button type="button" class="btn btn-success" onclick="showFromCreate()">
+                                    <i class="fas fa-plus"></i> Thêm mới
                             </button>
                         </div>
                     </div>
@@ -51,7 +50,7 @@ function getAllProduct() {
                   <td>${product[i].id}</td>
                   <td>${product[i].name}</td>
                   <td>${product[i].price}</td>
-                  <td><img src="${product[i].image}" alt=""></td>
+                  <td ><img src="${product[i].image}" alt="" height="100px" width="auto"></td>
                   <td>${category_name}</td>
                   <td>
                          <button type="button" class="btn btn-success" onclick="showFromUpdate(${product[i].id})"><i class="fas fa-edit"></i></button>
@@ -99,9 +98,9 @@ function searchProduct() {
                     </div>
                     <div class="col-md-6">
                         <div class="p-2">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal" onclick="showFromCreate()">
-                                <i class="fas fa-user-plus">Thêm mới</i>
+                                <i class="fas fa-plus"></i> Thêm mới
                             </button>
                         </div>
                     </div>
@@ -133,7 +132,7 @@ function searchProduct() {
                         <td>${product.id}</td>
                         <td>${product.name}</td>
                         <td>${product.price}</td>
-                        <td><img src="${product.image}" alt=""></td>
+                        <td><img src="${product.image}" alt="" height="100px" width="auto"></td>
                         <td>${category_name}</td>
                         <td>
                             <button type="button" class="btn btn-success" onclick="showFromUpdate(${product.id})"><i class="fas fa-edit"></i></button>

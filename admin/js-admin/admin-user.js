@@ -1,7 +1,59 @@
 function showListUser() {
-    axios.get('http://localhost:8080/admin/users').then(res => {
+    let token = getCurrenUser().accessToken;
+    axios.get('http://localhost:8080/admin/users', {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }).then(res => {
         let users = res.data;
-        let html = `<table class="table table-striped table-valign-middle">
+        let html = `
+                    <div class="d-flex flex-row-reverse" >
+                        <div class="p-2">
+                            <!--Thêm mới đồ ăn-->
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">
+                                <i class="fas fa-user-plus"></i>Thêm mới
+                            </button>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                 aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="modal-food">Thêm Tài Khoản </h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="mb-3">
+                                                <label for="usernameNew" class="form-label">Tên Tài Khoản</label>
+                                                <input class="form-control" id="usernameNew" placeholder="">
+                                                <span id="errorusername"></span>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="passwordNew" class="form-label">Mật Khẩu</label>
+                                                <input class="form-control" id="passwordNew" placeholder="">
+                                                <span id="errorpassword"></span>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="identityCode" class="form-label">Số CCCD</label>
+                                                <input class="form-control" id="identityCode" placeholder="">
+                                                <span id="erroridentityCode"></span>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                    Huỷ
+                                                </button>
+                                                <button type="button" class="btn btn-primary" onclick="createUser()">
+                                                    Lưu
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <table class="table table-striped table-valign-middle">
                                     <thead>
                                     <tr>
                                         <th>STT</th>
@@ -14,8 +66,9 @@ function showListUser() {
                                     </thead>
                                     <tbody>`
         for (let i = 0; i < users.length; i++) {
-                let status = (users[i].enabled) ? "Hoạt động" : "Nghỉ";
-                let time = formatTime(users[i].time);
+            let status = (users[i].enabled) ? "Hoạt động" : "Nghỉ";
+            let time = formatTime(users[i].time);
+            if (users[i].roles[0].name === "ROLE_ADMIN") continue;
             html += `<tr>
                                         <td>${i + 1}</td>
                                         <td>${users[i].username}</td>
@@ -34,11 +87,12 @@ function showListUser() {
                                         </td>
                                     </tr>`
         }
-              html += `   </tbody>
+        html += `   </tbody>
                          </table>`
         document.getElementById("main").innerHTML = html;
     })
 }
+
 showListUser()
 const modalMoney = document.getElementById('naptien')
 if (modalMoney) {
@@ -70,10 +124,15 @@ function updatePassword() {
     let username = document.getElementById("txtUser").value;
     let password = document.getElementById("txtUpdatePassword").value;
     let user = {
-        username : username,
-        password : password
+        username: username,
+        password: password
     }
-    axios.post('http://localhost:8080/admin/users',user).then(res =>{
+    let token = getCurrenUser().accessToken;
+    axios.post('http://localhost:8080/admin/users', user, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }).then(res => {
         alert("Sửa thành công")
     })
 }
@@ -81,42 +140,53 @@ function updatePassword() {
 function updateMoney() {
     let username = document.getElementById("txtUpdateUser").value;
     let money = document.getElementById("txtUpdateMoney").value;
-    let time = (money/10000)*60*60;
+    let time = (money / 10000) * 60 * 60;
     let user = {
-        username : username,
-        time : time
+        username: username,
+        time: time
     }
-
-    axios.post('http://localhost:8080/admin/users/money',user).then(res =>{
+    let token = getCurrenUser().accessToken;
+    axios.post('http://localhost:8080/admin/users/money', user, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }).then(res => {
         alert("Nạp tiền thành công");
         let idUser = res.data.id;
-        let transactionHistory={
-            user : {
-                id : idUser
+        let transactionHistory = {
+            user: {
+                id: idUser
             },
-            price : money
+            price: money
         }
-            axios.post('http://localhost:8080/history',transactionHistory).then(res =>{
-                console.log("Lưu lịch sử thành công")
-            })
+        axios.post('http://localhost:8080/history', transactionHistory, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then(res => {
+            console.log("Lưu lịch sử thành công")
+        })
     })
 }
 
 function createUser() {
-    let username = document.getElementById("username").value;
-    let password = document.getElementById("password").value;
+    let username = document.getElementById("usernameNew").value;
+    let password = document.getElementById("passwordNew").value;
     let identityCode = +document.getElementById("identityCode").value;
-    console.log(identityCode)
     let user = {
         username: username,
         password: password,
         identityCode: identityCode
     }
-    axios.post('http://localhost:8080/register', user).then(res => {
+    let token = getCurrenUser().accessToken;
+    axios.post('http://localhost:8080/register', user, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }).then(res => {
         alert("Thêm thành công");
         // quay về trang chủ
     }).catch(error => {
-        console.log(1)
         checkInput(error.response.data)
     })
 
@@ -130,9 +200,13 @@ function checkInput(errors) {
 }
 
 
-
 function showHistory() {
-    axios.get('http://localhost:8080/history').then(res => {
+    let token = getCurrenUser().accessToken;
+    axios.get('http://localhost:8080/history', {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }).then(res => {
         let history = res.data;
         let html = `<table class="table table-striped table-valign-middle table-bordered">
                                     <thead>
@@ -159,6 +233,7 @@ function showHistory() {
         document.getElementById("main").innerHTML = html;
     })
 }
+
 function formatDate(dateString) {
     // Chuyển chuỗi thành đối tượng Date
     const date = new Date(dateString);
@@ -176,10 +251,23 @@ function formatDate(dateString) {
 
     return formattedDate;
 }
+
 function formatTime(seconds) {
     const hours = Math.floor(seconds / 3600);
     const minutes = Math.floor((seconds % 3600) / 60);
     const remainingSeconds = seconds % 60;
 
     return `${hours}h ${minutes}m ${remainingSeconds}s`;
+}
+
+function displayUsername() {
+    let username = getCurrenUser().username;
+    document.getElementById("username").innerHTML = username;
+}
+
+displayUsername()
+
+function logout() {
+    localStorage.clear();
+    window.location = "./../login.html";
 }

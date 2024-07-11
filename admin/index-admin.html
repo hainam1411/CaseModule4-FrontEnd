@@ -11,7 +11,7 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="css/adminlte.min.css">
     <!-- Theme style -->
-<!--    <link rel="stylesheet" href="css/all.min.css">-->
+    <!--    <link rel="stylesheet" href="css/all.min.css">-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
           integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
     <link rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
@@ -19,15 +19,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-
-
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="#" class="brand-link">
+        <a href="#" class="brand-link" style="text-decoration: none">
             <img src="css/cyber.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
             <span class="brand-text font-weight-light">Cyber Gaming</span>
         </a>
@@ -37,7 +35,7 @@
                     <img src="css/admin-5.png" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">Admin</a>
+                    <a href="#" id="username" class="d-block" style="text-decoration: none"></a>
                 </div>
             </div>
             <!-- Sidebar Menu -->
@@ -47,7 +45,7 @@
                     <li class="nav-item menu-open">
                         <a href="#" class="nav-link" onclick="getAllProduct()">
                             <p>
-                                Sản Phẩm
+                                <i class="fas fa-chevron-down"></i> Sản Phẩm
                             </p>
                         </a>
                         <ul class="nav nav-treeview ">
@@ -59,30 +57,31 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link active" onclick="productAdminShowDrink()">
+                                <a href="#" class="nav-link" onclick="productAdminShowDrink()">
                                     <p>Đồ Uống</p>
                                 </a>
                             </li>
                         </ul>
                     <li class="nav-item menu-open">
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="#" onclick="showListUser()" class="nav-link">
                             <p>Tài Khoản</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link active">
+                        <a href="#" onclick="showHistory()" class="nav-link active">
                             <p>Lịch Sử Nạp Tiền</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="#" class="nav-link" onclick="getAllOrderList()">
                             <p>
                                 Order
                             </p>
                         </a>
                     </li>
                 </ul>
+                <a type="submit" href="#" onclick="logout()" class="nav-link btn btn-primary"><p>Đăng xuất tài khoản</p></a>
             </nav>
             <!-- /.sidebar-menu -->
         </div>
@@ -102,6 +101,7 @@
                             </marquee>
                         </h1>
                     </div><!-- /.col -->
+
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
@@ -132,7 +132,64 @@
 </footer>
 </div>
 <!-- ./wrapper -->
-
+<div class="modal fade" id="naptien" tabindex="-1" aria-labelledby="modalMoney"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Nạp tiền</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="txtUpdateUser" class="form-label">Tên Tài Khoản</label>
+                    <input class="form-control" id="txtUpdateUser" placeholder="" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="txtUpdateMoney" class="form-label">Số tiền</label>
+                    <input class="form-control" id="txtUpdateMoney" placeholder="">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Huỷ
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="updateMoney()">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/Modal Nap Tien-->
+<!--&lt;!&ndash;Modal Update&ndash;&gt;-->
+<div class="modal fade" id="updateUser" tabindex="-1" aria-labelledby="updateUser"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Nạp tiền</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="txtUser" class="form-label">Tên Tài Khoản</label>
+                    <input class="form-control" id="txtUser" placeholder="" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="txtUpdatePassword" class="form-label">Mật Khẩu Mới</label>
+                    <input class="form-control" id="txtUpdatePassword" placeholder="">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Huỷ
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="updatePassword()">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- jQuery -->
 <script src="js-admin/jquery.min.js"></script>
 <!-- Bootstrap -->
@@ -166,5 +223,8 @@
 <script src="../javascript/product/productList.js"></script>
 <script src="../javascript/productUserShowDrink.js"></script>
 <script src="../javascript/productUserShowFood.js"></script>
+<script src="js-admin/bs-custom-file-input.min.js"></script>
+<script src="../javascript/login.js"></script>
+<script src="js-admin/admin-user.js"></script>
 </body>
 </html>

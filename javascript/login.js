@@ -8,10 +8,18 @@ function login() {
     axios.post("http://localhost:8080/login",userLogin).then(res =>{
         alert("Đăng nhập thành công")
         localStorage.setItem("currentUser",JSON.stringify(res.data))
-        // điều hướng
+        if (getCurrenUser().roles[0].authority == "ROLE_USER"){
+            window.location = `./user.html`;
+        }else {
+            window.location = `./admin/index-admin.html`;
+        }
     }).catch(error =>{
-        let notification = error.response.data;
-        let check = (typeof notification === 'string')?error.response.data:"Sai tài khoản hoặc mật khẩu";
-        alert(check)
+        alert("Sai tài khoản hoặc mật khẩu")
     })
 }
+function getCurrenUser() {
+    let getCurrentUser =JSON.parse(localStorage.getItem("currentUser"));
+    return getCurrentUser;
+
+}
+

@@ -25,7 +25,7 @@ function productAdminShowDrink() {
                          <td>${i+1}</td>
                          <td>${product[i].name}</td>
                          <td>${product[i].price}</td>
-                         <td><img src="${product[i].image}" alt=""></td>
+                         <td><img src="${product[i].image}" alt="" height="100px" width="auto"></td>
                     </tr>
                 `
             }

@@ -16,6 +16,9 @@ ul li a:hover{
     text-align: center;
     transition: transform 0.3s ease-in-out;
 }
+.game{
+    height: 83px;
+}
 
 .card:hover {
     transform: scale(1.1);

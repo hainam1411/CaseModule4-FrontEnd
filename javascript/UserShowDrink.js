@@ -1,8 +1,5 @@
-function userShowDrink(t, elm) {
-    const element = document.querySelector('.nav-link.active');
-    if (element) {
-        element.classList.remove('active');
-    }
+function userShowDrink() {
+
     axios.get('http://localhost:8080/products/drink')
         .then(function (response) {
             console.log(response.data)
@@ -11,7 +8,7 @@ function userShowDrink(t, elm) {
             for (let i = 0; i < products.length; i++) {
                 let drink= `<div class=" col-12 col-md-3">
                       <div class="card border-0"> 
-                  <img src="./assets/food.png" alt="" class="img-fluid card-img-top"/>
+                  <img src="${products[i].image}" alt="" class="img-fluid card-img-top"/>
                   <div class="card-body">
                     <h6 class="card-title text-center">${products[i].name}</h6>
                   </div>
@@ -20,7 +17,7 @@ function userShowDrink(t, elm) {
                     <h3 class="text-danger">${products[i].price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}</h3>
                   </div>
                   <div class="col-lg-3 col-md-2  justify-content-around mx-auto">
-                  <button type="submit" class="btn btn-danger" id="addCard" onclick="showFormOrder()" ><i class="fas fa-shopping-cart"></i></i></button>
+                  <button type="submit" class="btn btn-danger" id="addCard" onclick="showFormOrder('${products[i].image}',${products[i].id})" ><i class="fas fa-shopping-cart"></i></i></button>
                     </div>
                   </div>
                   </div> 
@@ -31,4 +28,4 @@ function userShowDrink(t, elm) {
             document.getElementById("main").innerHTML = html;
         })
 }
-userShowDrink(null, elm);
+userShowDrink();
